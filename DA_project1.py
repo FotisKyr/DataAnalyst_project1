@@ -33,8 +33,7 @@ def final_dataframe(df):
     df['genres'] = df['genres'].str.split('|')
 
     # Make a new row for every element in the genre values list
-    lst_col = 'genres'
-    df = pd.DataFrame({col:np.repeat(df[col].values, df[lst_col].str.len()) for col in df.columns.drop(lst_col)}).assign(**{lst_col:np.concatenate(df[lst_col].values)})[df.columns]
+    df = df.explode('genres')
 
     # Create dataframe with info on the average popularity of each genre each year
     df_year_genre = df.groupby(['release_year','genres'], as_index=False).popularity.mean()

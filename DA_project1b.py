@@ -10,6 +10,6 @@ pd.set_option('display.max_columns',25)
 
 df = pd.read_csv('tmdb-movies.csv')
 
-
-x = df[df['revenue'] > df['revenue'].mean()]
-print(x.describe())
+df['genres'] = df['genres'].str.split('|')
+df = df.explode('genres')
+print(df.corr())
