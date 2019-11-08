@@ -49,12 +49,13 @@ def visualise(df_year_genre):
     ''' Creates a plot where the most popular genre is shown for each year'''
 
     # Visualize which the year and most popular corresponding genre
-    plt.scatter(df_year_genre['release_year'], df_year_genre['genres'])
-    plt.xticks(df_year_genre['release_year'],fontsize = 9)
+    plt.hlines(y=df_year_genre['genres'], xmin=1960, xmax=df_year_genre['release_year'], color='skyblue')
+    plt.plot(df_year_genre['release_year'], df_year_genre['genres'], "D")
+    plt.xticks(df_year_genre['release_year'], fontsize=9)
     plt.xticks(rotation=45)
-    plt.title('Most popular film genre each year',fontsize = 20)
-    plt.xlabel('Year',fontsize = 16)
-    plt.ylabel(' Film genre',fontsize = 16);
+    plt.title('Most popular film genre each year', fontsize=20)
+    plt.xlabel('Year', fontsize=16)
+    plt.ylabel(' Film genre', fontsize=16);
     plt.show()
     return df_year_genre
 
@@ -73,6 +74,7 @@ def main():
     df_year_genre = final_dataframe(df)
     df_year_genre = visualise(df_year_genre)
     get_table(df_year_genre)
+    return df
 
 if __name__ == "__main__":
 	main()

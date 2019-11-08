@@ -13,3 +13,6 @@ df = pd.read_csv('tmdb-movies.csv')
 df['genres'] = df['genres'].str.split('|')
 df = df.explode('genres')
 print(df.corr())
+
+df.plot(x = 'revenue', y = 'popularity', kind = 'scatter')
+plt.show()
