@@ -45,7 +45,7 @@ def final_dataframe(df):
     #print(df_year_genre)
     return df_year_genre
 
-def visualise(df_year_genre):
+def visualise(df_year_genre,df):
     ''' Creates a plot where the most popular genre is shown for each year'''
 
     # Visualize which the year and most popular corresponding genre
@@ -56,7 +56,16 @@ def visualise(df_year_genre):
     plt.title('Most popular film genre each year', fontsize=20)
     plt.xlabel('Year', fontsize=16)
     plt.ylabel(' Film genre', fontsize=16);
+
+    print(df.corr())
+    df.plot(x='revenue', y='popularity', kind='scatter')
+    plt.title('Association of revenues over the popularity of movies', fontsize=20)
+    df.plot(x='revenue', y='budget', kind='scatter')
+    plt.title('Association of revenues over the budget of movies', fontsize=20)
+    df.plot(x='revenue', y='vote_count', kind='scatter')
+    plt.title('Association of revenues over the nr. of votes ofa movie', fontsize=20)
     plt.show()
+
     return df_year_genre
 
 def get_table(df_year_genre):
@@ -72,10 +81,10 @@ def main():
     df = read_data()
     df = miss_values(df)
     df_year_genre = final_dataframe(df)
-    df_year_genre = visualise(df_year_genre)
+    df_year_genre = visualise(df_year_genre,df)
     get_table(df_year_genre)
     return df
 
 if __name__ == "__main__":
-	main()
+	df = main()
 

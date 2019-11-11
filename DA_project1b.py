@@ -16,3 +16,4 @@ print(df.corr())
 
 df.plot(x = 'revenue', y = 'popularity', kind = 'scatter')
 plt.show()
+
